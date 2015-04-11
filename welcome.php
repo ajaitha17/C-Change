@@ -1,6 +1,6 @@
 <?php
 	
-	include "functions.php";
+	require_once "functions.php";
 	if(isset($_POST['username']) && isset($_POST['password'])){
 		$username = sanitizeString($_POST['username']);
 		$password = sanitizeString($_POST['password']);
@@ -11,7 +11,7 @@
 			session_start();
 			$_SESSION['un'] = $username;
 			$_SESSION['pw'] = $password;
-			displayAll($result);
+			//var_dump($_SESSION);
 			include "feed.php";
 		} else {
 			include "homePage.php";
@@ -19,9 +19,7 @@
 	}
 	else{
 		include "homePage.php";	
-
 	}
 	
 	
-
 ?>
