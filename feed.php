@@ -24,25 +24,30 @@
 	float: left;
 }
 </style>
+<html>
 <head>
-<title> Welcome!</title>
+	<link rel="stylesheet" type="text/css" href="styling.css">
+	<title> Welcome!</title>
 </head>
 <?php
 	require_once "functions.php";
 	if(isset($_POST['support'])){
 		$petid = $_POST['add1'];
-		increaseBackers($petid,1);
+		increaseBackers($username, $petid, 1);
 	} 
 	if(isset($_POST['get_involved'])){
 		$petid = $_POST['add3'];
-		increaseBackers($petid,3);
+		increaseBackers($username, $petid, 3);
 	}
 ?>
 <body>
-<div id="topcorner"><a href="homePage.php">Logout</a></div>
-<a href = 'profile.php'>Profile</a>
-<h1>Feed Page</h1>
-	<table>
+	<a href = 'profile.php'><?php echo $username ?></a>
+	&nbsp &nbsp
+	<!-- <a href = 'messages.php'>Messages</a> -->
+	&nbsp &nbsp
+	<div id="topcorner"><a href="homePage.php">Logout</a></div>
+	<center><h1>New Petitions</h1></center>
+	<center><table>
 		<tr>
 			<form method="post" action="feed.php">
 			<td><input type="submit" name="submit" value="New"></td>
@@ -54,16 +59,15 @@
 			<td><input type="submit" name="submit" value="Write"></td>
 			</form>
 		</tr>
-	</table>
-	
+	</table></center>
+
 	<?php
-		
 		$result = getPetitions();
 		$rows = $result->num_rows;
-		echo "<table><thead><caption><b>New Petitions</br></caption></thead>";
+		echo "<center><table id = 'main'><thead></thead>";
 			//echo "<th>Customer ID</th><th>Name</th><th>Address</th><th>Cookie Type></th><th>Quantity</th>";
 			//echo "<th>Customer ID</th><th>Name</th><th>Address</th>";
-			echo "<th>User_id</th><th>Title</th><th>Petition Text</th><th>Backers</th><th>Pet_Id</th>";
+			echo "<th>User ID</th><th>Title</th><th>Petition Text</th><th>Backers</th><th>Petition ID</th>";
 		for($j=0;$j<$rows; $j++) {
 			$result->data_seek($j);
 			echo "<tr><td> ".$result->fetch_assoc()['user_id']."</td>";
@@ -72,14 +76,15 @@
 			$result->data_seek($j);
 			echo "<td> ".$result->fetch_assoc()['body']."</td>";
 			$result->data_seek($j);
-			echo "<td> ".$result->fetch_assoc()['num_backers']."</td>";
-			$result->data_seek($j);
 			$pet_id = $result->fetch_assoc()['pet_id'];
+			$result->data_seek($j);
+			echo "<td><a href = backers.php?id=".$pet_id.">".$result->fetch_assoc()['num_backers']."</a></td>";
 			echo "<td> ".$pet_id."</td>";
 			
-			echo "<td><form action='feed.php' method = 'post'><input type = 'hidden' value = '$pet_id' name = 'add1'><input type='submit' value = 'support' name = 'support'></form></td>";
-			echo "<td><form action='feed.php' method = 'post'><input type = 'hidden' value = '$pet_id' name = 'add3'><input type='submit' value = 'get_involved' name = 'get_involved'></form></td>";
+			echo "<td><form action='feed.php' method = 'post'><input type = 'hidden' value = '$pet_id' name = 'add1'><input type='submit' value = 'Support' name = 'support'></form></td>";
+			echo "<td><form action='feed.php' method = 'post'><input type = 'hidden' value = '$pet_id' name = 'add3'><input type='submit' value = 'Get Involved' name = 'get_involved'></form></td>";
 			}
-		echo"</table>";
+		echo"</table></center>";
 	?>
 </body>
+</html>
