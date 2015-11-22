@@ -30,5 +30,4 @@ class Petition {
 		return $this->backers;
 	}
 }
-//Working
 ?>
