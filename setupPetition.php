@@ -18,6 +18,7 @@
 	if (!$result) {
 		echo "Connection Error switch";
 	}
+
 	$query = "CREATE TABLE user(
 	user_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	name text NOT NULL,
@@ -30,6 +31,7 @@
 	if(!$result){
 		echo "Didn't create user table successfully.";
 	}
+
 	$query = "CREATE TABLE petitions(
 	user_id int NOT NULL,
 	title text NOT NULL,
@@ -42,19 +44,31 @@
 	if(!$result){
 		echo "Didn't create petitions table successfully.";
 	}
+
 	$query = "CREATE TABLE backed(
 	pet_id int NOT NULL,
-	backer_id text NOT NULL) ENGINE=InnoDB";
+	backer_id text NOT NULL,
+	email text) ENGINE=InnoDB";
 	$result = $conn->query($query);
 	if(!$result){
 		echo "Didn't create petitions backed successfully. ";
 	}
+
 	$query = "CREATE TABLE saved(
 	user_id int NOT NULL,
 	saved_ids int NOT NULL) ENGINE=InnoDB";
 	$result = $conn->query($query);
 	if(!$result){
 		echo "Didn't create saved table successfully. ";
+	}
+
+	$query = "CREATE TABLE messages(
+		sender_id text NOT NULL,
+		pet_id int NOT NULL,
+		receiver_id text NOT NULL) ENGINE = InnoDB";
+	$result = $conn->query($query);
+	if(!$result){
+		echo "Didn't create messages table successfully. ";
 	}
 ?>
 
