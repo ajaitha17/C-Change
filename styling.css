@@ -1,0 +1,44 @@
+#main, #main td {
+	border: 3px solid #444444;
+	/*background-color: white;*/
+}
+
+th {
+	color: #444444;
+	text-decoration: bold;
+	font-family: "cambria";
+}
+
+caption {
+	font-family: "cambria";
+	font-size: 32px;
+}
+
+h1 {
+	font-family: "cambria";
+	color: white;
+	/*background-color: #FFCC66;*/
+}
+
+/*.head li {
+	display: inline;
+}*/
+
+div {
+	position: relative;
+	display: inline;
+}
+
+#popular {
+}
+
+html{
+	background-image: url('https://testingerasto.files.wordpress.com/2015/04/logo.jpg');
+	background-size: cover;
+	font-family: "cambria";
+}
+
+
+
+head {
+}
