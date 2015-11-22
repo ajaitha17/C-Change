@@ -40,7 +40,7 @@ body#bg{
 </head>
 <body id="bg">
 <div id="title">
-	<h1> Petition App </h1>
+	<h1> C.change </h1>
 </div>
 <div id="loginSection">
 	<form method="post" action="welcome.php">
