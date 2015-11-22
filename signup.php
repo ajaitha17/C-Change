@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
-<title> Welcome!</title>
+	<title> Welcome!</title>
+	<link rel = "stylesheet" type = "text/css" href = "styling.css">
 </head>
 <body>
 <?php 
@@ -22,9 +23,12 @@
 ?>
 <h1> Welcome <?php echo $name?> </h1>
 
-<?php	
+<?php
+
 	$conn = new mysqli("localhost", "root", "", "petition");
     if($pass1 == $pass2) {
+    	$pass1 = encrypt($pass1);
+		$pass2 = encrypt($pass2);	
     	if(checkEmail($email) && uniqueUser($usrname)) {
     		$query = "INSERT INTO user VALUES ('NULL', '$name', '$email', '$usrname', '$pass1', '$class', '$dorm')";
     		$result = $conn->query($query);
